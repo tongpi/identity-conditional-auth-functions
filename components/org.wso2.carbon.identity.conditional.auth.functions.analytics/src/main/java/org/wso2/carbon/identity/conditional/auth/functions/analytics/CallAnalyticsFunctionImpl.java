@@ -75,14 +75,14 @@ public class CallAnalyticsFunctionImpl extends AbstractAnalyticsFunction impleme
                 } else if (receiverUrl != null) {
                     targetPath = receiverUrl;
                 } else {
-                    throw new FrameworkException("Target path cannot be found.");
+                    throw new FrameworkException("找不到目标路径。");
                 }
                 String tenantDomain = authenticationContext.getTenantDomain();
                 String targetHostUrl = CommonUtils.getConnectorConfig(AnalyticsEngineConfigImpl.RECEIVER,
                         tenantDomain);
 
                 if (targetHostUrl == null) {
-                    throw new FrameworkException("Target host cannot be found.");
+                    throw new FrameworkException("找不到目标主机。");
                 }
 
                 HttpPost request = new HttpPost(targetPath);
@@ -126,20 +126,17 @@ public class CallAnalyticsFunctionImpl extends AbstractAnalyticsFunction impleme
                                         JSONObject json = (JSONObject) parser.parse(jsonString);
                                         asyncReturn.accept(authenticationContext, json, OUTCOME_SUCCESS);
                                     } catch (ParseException e) {
-                                        LOG.error("Error while building response from analytics engine call for " +
-                                                "session data key: " + authenticationContext.getContextIdentifier(), e);
+                                        LOG.error("从分析引擎调用会话数据密钥：" + authenticationContext.getContextIdentifier() + "构建响应时出错", e);
                                         asyncReturn.accept(authenticationContext, Collections.emptyMap(), OUTCOME_FAIL);
                                     } catch (IOException e) {
-                                        LOG.error("Error while reading response from analytics engine call for " +
-                                                "session data key: " + authenticationContext.getContextIdentifier(), e);
+                                        LOG.error("从分析引擎调用会话数据秘钥：" + authenticationContext.getContextIdentifier() + "读取响应时出错", e);
                                         asyncReturn.accept(authenticationContext, Collections.emptyMap(), OUTCOME_FAIL);
                                     }
                                 } else {
                                     asyncReturn.accept(authenticationContext, Collections.emptyMap(), OUTCOME_FAIL);
                                 }
                             } catch (FrameworkException e) {
-                                LOG.error("Error while proceeding after successful response from analytics engine " +
-                                        "call for session data key: " + authenticationContext.getContextIdentifier(),
+                                LOG.error("在分析引擎调用会话数据密钥：" + authenticationContext.getContextIdentifier() + "成功响应后继续执行错误",
                                         e);
                             }
                         }
@@ -147,13 +144,11 @@ public class CallAnalyticsFunctionImpl extends AbstractAnalyticsFunction impleme
                         @Override
                         public void failed(final Exception ex) {
 
-                            LOG.error("Failed to invoke analytics engine for session data key: " +
-                                    authenticationContext.getContextIdentifier(), ex);
+                            LOG.error("会话数据密钥" + authenticationContext.getContextIdentifier() + "无法调用分析引擎", ex);
                             if (requestAtomicInteger.decrementAndGet() <= 0) {
                                 try {
                                     if (LOG.isDebugEnabled()) {
-                                        LOG.debug(" All the calls to analytics engine failed for session " +
-                                                "data key: " + authenticationContext.getContextIdentifier());
+                                        LOG.debug("所有调用分析引擎的会话数据秘钥：" + authenticationContext.getContextIdentifier() + "都失败了");
                                     }
                                     String outcome = OUTCOME_FAIL;
                                     if ((ex instanceof SocketTimeoutException)
@@ -162,9 +157,7 @@ public class CallAnalyticsFunctionImpl extends AbstractAnalyticsFunction impleme
                                     }
                                     asyncReturn.accept(authenticationContext, Collections.emptyMap(), outcome);
                                 } catch (FrameworkException e) {
-                                    LOG.error("Error while proceeding after failed response from analytics engine " +
-                                            "call for session data key: " + authenticationContext
-                                            .getContextIdentifier(), e);
+                                    LOG.error("在分析引擎调用会话数据密钥：" + authenticationContext.getContextIdentifier() + "的响应失败后继续出错", e);
                                 }
                             }
                         }
@@ -172,19 +165,15 @@ public class CallAnalyticsFunctionImpl extends AbstractAnalyticsFunction impleme
                         @Override
                         public void cancelled() {
 
-                            LOG.error("Invocation analytics engine for session data key: " +
-                                    authenticationContext.getContextIdentifier() + " is cancelled.");
+                            LOG.error("会话数据密钥：" + authenticationContext.getContextIdentifier() + "的调用分析引擎被取消。");
                             if (requestAtomicInteger.decrementAndGet() <= 0) {
                                 try {
                                     if (LOG.isDebugEnabled()) {
-                                        LOG.debug(" All the calls to analytics engine failed for session " +
-                                                "data key: " + authenticationContext.getContextIdentifier());
+                                        LOG.debug("所有调用分析引擎的会话数据秘钥：" + authenticationContext.getContextIdentifier() + "都失败了");
                                     }
                                     asyncReturn.accept(authenticationContext, Collections.emptyMap(), OUTCOME_FAIL);
                                 } catch (FrameworkException e) {
-                                    LOG.error("Error while proceeding after cancelled response from analytics engine " +
-                                            "call for session data key: " + authenticationContext
-                                            .getContextIdentifier(), e);
+                                    LOG.error("在分析引擎调用会话数据密钥：" + authenticationContext.getContextIdentifier() + "取消响应后继续出错", e);
                                 }
                             }
                         }
@@ -193,10 +182,10 @@ public class CallAnalyticsFunctionImpl extends AbstractAnalyticsFunction impleme
                 }
 
             } catch (IOException e) {
-                LOG.error("Error while calling analytics engine. ", e);
+                LOG.error("调用分析引擎时出错。", e);
                 asyncReturn.accept(authenticationContext, Collections.emptyMap(), OUTCOME_FAIL);
             } catch (IdentityEventException e) {
-                LOG.error("Error while creating authentication. ", e);
+                LOG.error("创建身份验证时出错。", e);
                 asyncReturn.accept(authenticationContext, Collections.emptyMap(), OUTCOME_FAIL);
             }
         });

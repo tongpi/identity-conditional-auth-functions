@@ -61,13 +61,13 @@ public class PublishToAnalyticsFunctionImpl extends AbstractAnalyticsFunction im
             } else if (targetPath != null) {
                 epUrl = targetPath;
             } else {
-                LOG.error("Target path cannot be found.");
+                LOG.error("找不到目标路径。");
                 return;
             }
             String tenantDomain = context.getContext().getTenantDomain();
             String targetHostUrl = CommonUtils.getConnectorConfig(AnalyticsEngineConfigImpl.RECEIVER, tenantDomain);
             if (targetHostUrl == null) {
-                LOG.error("Target host cannot be found.");
+                LOG.error("找不到目标主机。");
                 return;
             }
 
@@ -104,40 +104,33 @@ public class PublishToAnalyticsFunctionImpl extends AbstractAnalyticsFunction im
                         int responseCode = response.getStatusLine().getStatusCode();
                         if (responseCode == 200) {
                             if (LOG.isDebugEnabled()) {
-                                LOG.debug("Successfully published data to the analytics for session data key: " +
-                                        context.getContext().getContextIdentifier());
+                                LOG.debug("已成功将数据发布到会话数据密钥:" + context.getContext().getContextIdentifier() + "的分析");
                             }
                         } else {
-                            LOG.error("Error while publishing data to analytics engine for session data key: " +
-                                    context.getContext().getContextIdentifier() + ". Request completed successfully. " +
-                                    "But response code was not 200");
+                            LOG.error("将数据发布到会话数据密钥：" + context.getContext().getContextIdentifier() + "的分析引擎时出错。 请求已成功完成。 但响应代码不是200");
                         }
                     }
 
                     @Override
                     public void failed(final Exception ex) {
 
-                        LOG.error("Error while publishing data to analytics engine for session data key: " +
-                                context.getContext().getContextIdentifier() + ". Request failed with: " + ex);
+                        LOG.error("将数据发布到会话数据密钥：" + context.getContext().getContextIdentifier() + "的分析引擎时出错。 请求失败: " + ex);
                     }
 
                     @Override
                     public void cancelled() {
 
-                        LOG.error("Error while publishing data to analytics engine for session data key: " +
-                                context.getContext().getContextIdentifier() + ". Request canceled.");
+                        LOG.error("将数据发布到会话数据密钥：" + context.getContext().getContextIdentifier() + "的分析引擎时出错。 请求已取消。");
                     }
                 });
             }
 
         } catch (IOException e) {
-            LOG.error("Error while calling analytics engine for tenant: " + context.getContext().getTenantDomain(), e);
+            LOG.error("租户：" + context.getContext().getTenantDomain() + "调用分析引擎时出错", e);
         } catch (IdentityEventException e) {
-            LOG.error("Error while preparing authentication information for tenant: " + context.getContext()
-                    .getTenantDomain(), e);
+            LOG.error("租户：" + context.getContext().getTenantDomain() + "准备身份验证信息时出错", e);
         } catch (FrameworkException e) {
-            LOG.error("Error while building client to invoke analytics engine for tenant: " + context.getContext()
-                    .getTenantDomain(), e);
+            LOG.error("构建客户端以调用租户：" + context.getContext().getTenantDomain() + "的分析引擎时出错", e);
         }
     }
 }

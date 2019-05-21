@@ -98,16 +98,16 @@ public class HTTPPostFunctionImpl implements HTTPPostFunction {
                 }
 
             } catch (ConnectTimeoutException e) {
-                LOG.error("Error while waiting to connect to " + epUrl, e);
+                LOG.error("等待连接" + epUrl + "时出错", e);
                 outcome = Constants.OUTCOME_TIMEOUT;
             } catch (SocketTimeoutException e) {
-                LOG.error("Error while waiting for data from " + epUrl, e);
+                LOG.error("从" + epUrl + "等待数据时出错", e);
                 outcome = Constants.OUTCOME_TIMEOUT;
             } catch (IOException e) {
-                LOG.error("Error while calling endpoint. ", e);
+                LOG.error("调用端点时出错。", e);
                 outcome = Constants.OUTCOME_FAIL;
             } catch (ParseException e) {
-                LOG.error("Error while parsing response. ", e);
+                LOG.error("解析响应时出错。", e);
                 outcome = Constants.OUTCOME_FAIL;
             }
 

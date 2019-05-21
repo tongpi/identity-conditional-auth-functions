@@ -41,7 +41,7 @@ public class CommonUtils {
             }
             return null;
         } catch (IdentityGovernanceException e) {
-            throw new IdentityEventException("Error while getting connector configurations for property :" + key, e);
+            throw new IdentityEventException("获取属性：" + key + "的连接器配置时出错", e);
         }
     }
 }

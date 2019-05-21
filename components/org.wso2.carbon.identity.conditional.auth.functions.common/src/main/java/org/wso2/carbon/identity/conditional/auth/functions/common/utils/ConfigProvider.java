@@ -51,21 +51,21 @@ public class ConfigProvider {
             try {
                 connectionTimeout = Integer.parseInt(connectionTimeoutString);
             } catch (NumberFormatException e) {
-                LOG.error("Error while parsing connection timeout : " + connectionTimeoutString, e);
+                LOG.error("解析连接超时时出错 : " + connectionTimeoutString, e);
             }
         }
         if (readTimeoutString != null) {
             try {
                 readTimeout = Integer.parseInt(readTimeoutString);
             } catch (NumberFormatException e) {
-                LOG.error("Error while parsing read timeout : " + connectionTimeoutString, e);
+                LOG.error("解析读取超时时出错 : " + connectionTimeoutString, e);
             }
         }
         if (connectionRequestTimeoutString != null) {
             try {
                 connectionRequestTimeout = Integer.parseInt(connectionRequestTimeoutString);
             } catch (NumberFormatException e) {
-                LOG.error("Error while parsing connection request timeout : " + connectionTimeoutString, e);
+                LOG.error("解析连接请求超时时出错 : " + connectionTimeoutString, e);
             }
         }
     }

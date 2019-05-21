@@ -57,13 +57,12 @@ public class Utils {
 
             if (userStore == null) {
                 throw new FrameworkException(
-                        String.format("Invalid user store domain (given : %s) or tenant domain (given: %s).",
+                        String.format("无效的用户存储域 (给定 : %s) 或租户域 (给定: %s).",
                                 userDomain, tenantDomain));
             }
         } catch (UserStoreException e) {
             throw new FrameworkException(
-                    "Error occurred while retrieving the UserStoreManager from Realm for " + tenantDomain
-                            + " to retrieve user roles", e);
+                    "为" + tenantDomain + "从领域 的用户存储管理检索用户角色", e);
         }
         return userStore;
     }

@@ -62,10 +62,10 @@ public class SessionBasedJSFunctionsComponent {
             jsFunctionRegistry.register(JsFunctionRegistry.Subsystem.SEQUENCE_HANDLER, "getSessionData",
                     (GetUserSessionDataFunction) getSessionDataFunction::getData);
             if (log.isDebugEnabled()) {
-                log.info("Session based conditional authentication component bundle activated");
+                log.info("激活基于会话的条件认证组件包");
             }
         } catch (Throwable e) {
-            log.error("Session based conditional authentication component bundle activation Failed", e);
+            log.error("基于会话的条件身份验证组件包激活失败", e);
         }
     }
 
@@ -81,7 +81,7 @@ public class SessionBasedJSFunctionsComponent {
                     "getSessionData");
         }
         if (log.isDebugEnabled()) {
-            log.info("SessionCountAuthenticator bundle is deactivated");
+            log.info("SessionCountAuthenticator包已停用");
         }
     }
 

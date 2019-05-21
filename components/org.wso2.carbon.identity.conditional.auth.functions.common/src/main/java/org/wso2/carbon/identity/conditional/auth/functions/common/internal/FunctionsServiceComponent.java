@@ -44,7 +44,7 @@ public class FunctionsServiceComponent {
     protected void setIdentityGovernanceService(IdentityGovernanceService identityGovernanceService) {
 
         if (LOG.isDebugEnabled()) {
-            LOG.debug("Identity Governance service is set form functions");
+            LOG.debug("身份管理服务被设置表单功能");
         }
         FunctionsDataHolder.getInstance().setIdentityGovernanceService(identityGovernanceService);
     }
@@ -52,7 +52,7 @@ public class FunctionsServiceComponent {
     protected void unsetIdentityGovernanceService(IdentityGovernanceService identityGovernanceService) {
 
         if (LOG.isDebugEnabled()) {
-            LOG.debug("Identity Governance service is unset from functions");
+            LOG.debug("身份管理服务未设置表单功能");
         }
         FunctionsDataHolder.getInstance().setIdentityGovernanceService(null);
     }

@@ -32,7 +32,7 @@ public class AuthenticationFactory {
         if ("Basic".equalsIgnoreCase(authType)) {
             return new BasicAuthenticationManager();
         } else {
-            throw new IllegalArgumentException("Unsupported Authentication type.");
+            throw new IllegalArgumentException("不支持的身份验证类型。");
         }
     }
 }

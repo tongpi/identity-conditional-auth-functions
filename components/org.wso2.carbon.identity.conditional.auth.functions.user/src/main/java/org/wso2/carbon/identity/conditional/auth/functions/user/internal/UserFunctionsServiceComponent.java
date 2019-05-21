@@ -99,7 +99,7 @@ public class UserFunctionsServiceComponent {
     protected void setRealmService(RealmService realmService) {
 
         if (LOG.isDebugEnabled()) {
-            LOG.debug("RealmService is set in the conditional authentication user functions bundle");
+            LOG.debug("RealmService在条件验证用户功能包中设置");
         }
         UserFunctionsServiceHolder.getInstance().setRealmService(realmService);
     }
@@ -107,7 +107,7 @@ public class UserFunctionsServiceComponent {
     protected void unsetRealmService(RealmService realmService) {
 
         if (LOG.isDebugEnabled()) {
-            LOG.debug("RealmService is unset in the conditional authentication user functions bundle");
+            LOG.debug("在条件验证用户功能包中未设置RealmService");
         }
         UserFunctionsServiceHolder.getInstance().setRealmService(null);
     }
@@ -122,7 +122,7 @@ public class UserFunctionsServiceComponent {
     protected void setRegistryService(RegistryService registryService) {
 
         if (LOG.isDebugEnabled()) {
-            LOG.debug("RegistryService is set in the conditional authentication user functions bundle");
+            LOG.debug("RegistryService在条件验证用户功能包中设置");
         }
         UserFunctionsServiceHolder.getInstance().setRegistryService(registryService);
     }
@@ -130,7 +130,7 @@ public class UserFunctionsServiceComponent {
     protected void unsetRegistryService(RegistryService registryService) {
 
         if (LOG.isDebugEnabled()) {
-            LOG.debug("RegistryService is unset in the conditional authentication user functions bundle");
+            LOG.debug("RegistryService在条件验证用户功能包中未设置");
         }
         UserFunctionsServiceHolder.getInstance().setRegistryService(null);
     }

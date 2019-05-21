@@ -70,13 +70,13 @@ public class IsWithinSessionLimitFunctionImpl implements IsWithinSessionLimitFun
 
         if (authenticatedUser == null) {
             if (log.isDebugEnabled()) {
-                log.debug("Unable to find the authenticated user from the Authentication context.");
+                log.debug("无法从身份验证上下文中找到经过身份验证的用户。");
             }
-            throw new FrameworkException("Unable to find the Authenticated user from previous step");
+            throw new FrameworkException("无法找到上一步中的Authenticated用户");
         }
         int sessionCount = getActiveSessionCount(authenticatedUser);
         if (log.isDebugEnabled()) {
-            log.debug("Active session count: " + sessionCount + " and session limit : " + sessionLimit);
+            log.debug("活动会话数量：" + sessionCount + " 和会话限制: " + sessionLimit);
         }
         if (sessionCount < sessionLimit) {
             state = true;
@@ -113,7 +113,7 @@ public class IsWithinSessionLimitFunctionImpl implements IsWithinSessionLimitFun
                         authenticatedUser.getUserName(),
                         authenticatedUser.getUserStoreDomain()));
         if (log.isDebugEnabled()) {
-            log.debug("JSON payload for retrieving data :" + paramMap.toString());
+            log.debug("用于检索数据的JSON有效负载 :" + paramMap.toString());
         }
         HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
         StringEntity entity = new StringEntity(paramMap.toString(), ContentType.APPLICATION_JSON);
@@ -138,21 +138,21 @@ public class IsWithinSessionLimitFunctionImpl implements IsWithinSessionLimitFun
                         responseResult.append(line);
                     }
                     if (log.isDebugEnabled()) {
-                        log.debug("Response from the data source :" + responseResult.toString());
+                        log.debug("来自数据源的响应:" + responseResult.toString());
                     }
                     sessionCount = parseInt(responseResult.toString());
                     return sessionCount;
                 } catch (IOException e) {
-                    throw new FrameworkException("Problem occurred while processing the HTTP Response ", e);
+                    throw new FrameworkException("处理HTTP响应时出现问题", e);
                 } catch (NumberFormatException e) {
-                    throw new FrameworkException("Problem occurred while parsing response result ", e);
+                    throw new FrameworkException("解析响应结果时出现问题", e);
                 }
             } else {
-                throw new FrameworkException("Failed to retrieve data from endpoint.Response status code :" +
+                throw new FrameworkException("无法从endpoint.Response状态代码中检索数据 :" +
                         response.getStatusLine().getStatusCode());
             }
         } catch (IOException e) {
-            throw new FrameworkException("Failed to execute the HTTP Post request", e);
+            throw new FrameworkException("无法执行HTTP Post请求", e);
         }
     }
 }

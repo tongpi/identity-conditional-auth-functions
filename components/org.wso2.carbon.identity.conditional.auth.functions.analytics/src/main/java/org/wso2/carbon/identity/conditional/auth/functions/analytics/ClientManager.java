@@ -127,21 +127,21 @@ public class ClientManager {
             try {
                 connectionTimeout = Integer.parseInt(connectionTimeoutString);
             } catch (NumberFormatException e) {
-                LOG.error("Error while parsing connection timeout : " + connectionTimeoutString, e);
+                LOG.error("解析连接超时时出错：" + connectionTimeoutString, e);
             }
         }
         if (readTimeoutString != null) {
             try {
                 readTimeout = Integer.parseInt(readTimeoutString);
             } catch (NumberFormatException e) {
-                LOG.error("Error while parsing read timeout : " + connectionTimeoutString, e);
+                LOG.error("解析读取超时时出错：" + connectionTimeoutString, e);
             }
         }
         if (connectionRequestTimeoutString != null) {
             try {
                 connectionRequestTimeout = Integer.parseInt(connectionRequestTimeoutString);
             } catch (NumberFormatException e) {
-                LOG.error("Error while parsing connection request timeout : " + connectionTimeoutString, e);
+                LOG.error("解析连接请求超时时出错：" + connectionTimeoutString, e);
             }
         }
 
@@ -175,7 +175,7 @@ public class ClientManager {
         try {
             ioReactor = new DefaultConnectingIOReactor();
         } catch (IOReactorException e) {
-            throw new FrameworkException("Error while creating ConnectingIOReactor", e);
+            throw new FrameworkException("创建ConnectingIOReactor时出错", e);
         }
         PoolingNHttpClientConnectionManager poolingHttpClientConnectionManager = new
                 PoolingNHttpClientConnectionManager(ioReactor);
@@ -217,8 +217,7 @@ public class ClientManager {
             builder.setSSLContext(sslContext);
             builder.setHostnameVerifier(hostnameVerifier);
         } catch (Exception e) {
-            LOG.error("Error while creating ssl context for analytics endpoint invocation in tenant domain: " +
-                    tenantDomain, e);
+            LOG.error("在租户域：" + tenantDomain + "中的分析端点调用创建ssl上下文时出错", e);
         }
     }
 
