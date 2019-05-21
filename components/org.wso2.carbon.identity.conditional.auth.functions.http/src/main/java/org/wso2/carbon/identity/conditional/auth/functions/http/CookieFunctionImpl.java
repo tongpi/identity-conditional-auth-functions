@@ -68,7 +68,7 @@ public class CookieFunctionImpl implements SetCookieFunction, GetCookieFunction 
                 try {
                     signature = Base64.encode(SignatureUtil.doSignature(value));
                 } catch (Exception e) {
-                    log.error("Error occurred when signing the cookie value.", e);
+                    log.error("签署cookie值时出错。", e);
                     return;
                 }
             }
@@ -76,7 +76,7 @@ public class CookieFunctionImpl implements SetCookieFunction, GetCookieFunction 
                 try {
                     value = CryptoUtil.getDefaultCryptoUtil().encryptAndBase64Encode(Base64.decode(value));
                 } catch (CryptoException e) {
-                    log.error("Error occurred when encrypting the cookie value.", e);
+                    log.error("加密cookie值时出错。", e);
                     return;
                 }
             }
@@ -133,7 +133,7 @@ public class CookieFunctionImpl implements SetCookieFunction, GetCookieFunction 
                     cookieValueJSON = (JSONObject) jsonParser.parse(new String(Base64.decode(cookie.getValue()),
                             Charsets.UTF_8));
                 } catch (ParseException e) {
-                    log.error("Error occurred when converting cookie value to JSON.", e);
+                    log.error("将cookie值转换为JSON时发生错误。", e);
                     return null;
                 }
                 String valueString = (String) cookieValueJSON.get(HTTPConstants.VALUE);
@@ -148,7 +148,7 @@ public class CookieFunctionImpl implements SetCookieFunction, GetCookieFunction 
                             valueString = Base64.encode(CryptoUtil.getDefaultCryptoUtil()
                                     .base64DecodeAndDecrypt(valueString));
                         } catch (CryptoException e) {
-                            log.error("Error occurred when decrypting the cookie value.", e);
+                            log.error("解密cookie值时发生错误。", e);
                             return null;
                         }
                     }
@@ -157,11 +157,11 @@ public class CookieFunctionImpl implements SetCookieFunction, GetCookieFunction 
                         try {
                             boolean isValid = SignatureUtil.validateSignature(valueString, signature);
                             if (!isValid) {
-                                log.error("Cookie signature didn't matched with the cookie value.");
+                                log.error("Cookie签名与cookie值不匹配。");
                                 return null;
                             }
                         } catch (Exception e) {
-                            log.error("Error occurred when validating signature of the cookie value.", e);
+                            log.error("验证cookie值的签名时发生错误。", e);
                             return null;
                         }
                     }

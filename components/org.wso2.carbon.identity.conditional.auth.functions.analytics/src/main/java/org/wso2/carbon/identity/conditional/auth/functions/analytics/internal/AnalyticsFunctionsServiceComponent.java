@@ -95,10 +95,10 @@ public class AnalyticsFunctionsServiceComponent {
                 keyStore.load(keyStoreStream, password.toCharArray());
                 AnalyticsFunctionsServiceHolder.getInstance().setTrustStore(keyStore);
             } catch (IOException | CertificateException | KeyStoreException | NoSuchAlgorithmException e) {
-                LOG.error("Error while loading truststore.", e);
+                LOG.error("加载truststore时出错。", e);
             }
         } catch (Throwable e) {
-            LOG.error("Error while activating AnalyticsFunctionsServiceComponent");
+            LOG.error("激活AnalyticsFunctionsServiceComponent时出错");
         }
     }
 
@@ -156,7 +156,7 @@ public class AnalyticsFunctionsServiceComponent {
     protected void setServerConfigurationService(ServerConfigurationService serverConfigurationService) {
 
         if (LOG.isDebugEnabled()) {
-            LOG.debug("Setting the serverConfigurationService");
+            LOG.debug("设置serverConfigurationService");
         }
         AnalyticsFunctionsServiceHolder.getInstance().setServerConfigurationService(serverConfigurationService);
     }
@@ -164,7 +164,7 @@ public class AnalyticsFunctionsServiceComponent {
     protected void unsetServerConfigurationService(ServerConfigurationService serverConfigurationService) {
 
         if (LOG.isDebugEnabled()) {
-            LOG.debug("Unsetting the ServerConfigurationService");
+            LOG.debug("取消设置ServerConfigurationService");
         }
         AnalyticsFunctionsServiceHolder.getInstance().setServerConfigurationService(null);
     }
@@ -179,7 +179,7 @@ public class AnalyticsFunctionsServiceComponent {
     protected void setIdentityGovernanceService(IdentityGovernanceService identityGovernanceService) {
 
         if (LOG.isDebugEnabled()) {
-            LOG.debug("Identity Governance service is set form functions");
+            LOG.debug("身份管理服务是以功能的形式设置的");
         }
         // Do nothing. Wait for the service before registering the governance connector.
     }
@@ -187,7 +187,7 @@ public class AnalyticsFunctionsServiceComponent {
     protected void unsetIdentityGovernanceService(IdentityGovernanceService identityGovernanceService) {
 
         if (LOG.isDebugEnabled()) {
-            LOG.debug("Identity Governance service is unset from functions");
+            LOG.debug("从功能中取消对身份管理服务的设置");
         }
         // Do nothing.
     }

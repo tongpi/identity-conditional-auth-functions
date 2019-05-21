@@ -40,7 +40,7 @@ public class KillSessionFunction implements ExecuteActionFunction {
         String sessionId = map.get(SessionValidationConstants.TERMINATION_SESSION_ID);
         SessionManagementService sessionManagementService = new SessionManagementService();
         if (log.isDebugEnabled()) {
-            log.debug("Session with session id :" + sessionId + " is requested to kill");
+            log.debug("会话id: " + sessionId + "被请求杀死");
         }
         if ( StringUtils.isEmpty(sessionId)) {
             return false;

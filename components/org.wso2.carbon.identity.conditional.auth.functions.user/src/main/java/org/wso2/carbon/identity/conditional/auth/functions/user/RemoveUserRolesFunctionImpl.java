@@ -47,11 +47,11 @@ public class RemoveUserRolesFunctionImpl implements RemoveUserRolesFunction {
     public boolean removeUserRoles(JsAuthenticatedUser user, List<String> removingRoles) {
 
         if (user == null) {
-            LOG.error("User is not defined");
+            LOG.error("用户未定义");
             return false;
         }
         if (removingRoles == null) {
-            LOG.error("Removing roles are not defined");
+            LOG.error("删除角色未定义");
             return false;
         }
         try {
@@ -70,19 +70,18 @@ public class RemoveUserRolesFunctionImpl implements RemoveUserRolesFunction {
                     return true;
                 } else {
                     if (LOG.isDebugEnabled()) {
-                        LOG.debug("Unable to find userRealm for the user: "
-                                + username + " in userStoreDomain: " + userStoreDomain);
+                        LOG.debug("在用户存储域：" + userStoreDomain + "中无法为用户: " + username + "找到用户领域");
                     }
                 }
             } else {
                 if (LOG.isDebugEnabled()) {
-                    LOG.debug("Unable to get wrapped content for the user");
+                    LOG.debug("无法为用户获取包装内容");
                 }
             }
         } catch (UserStoreException e) {
-            LOG.error("Error while getting user from the store", e);
+            LOG.error("从用户获取用户时出错", e);
         } catch (FrameworkException e) {
-            LOG.error("Error while retrieving userRealm and userStoreManager", e);
+            LOG.error("检索用户领域和用户存储管理时出错", e);
         }
         return false;
     }

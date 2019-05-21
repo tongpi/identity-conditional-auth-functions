@@ -88,14 +88,14 @@ public class AnalyticsEngineConfigImpl implements IdentityConnectorConfig {
 
         Map<String, String> mapping = new HashMap<>();
 
-        mapping.put(RECEIVER, "Target Host");
-        mapping.put(BASIC_AUTH_ENABLED, "Enable Basic Authentication");
-        mapping.put(USERNAME, "User ID");
-        mapping.put(CREDENTIAL, "Secret");
-        mapping.put(HTTP_CONNECTION_TIMEOUT, "HTTP Connection Timeout");
-        mapping.put(HTTP_READ_TIMEOUT, "HTTP Read Timeout");
-        mapping.put(HTTP_CONNECTION_REQUEST_TIMEOUT, "HTTP Connection Request Timeout");
-        mapping.put(HOSTNAME_VERIFIER, "Hostname verification");
+        mapping.put(RECEIVER, "目标主机");
+        mapping.put(BASIC_AUTH_ENABLED, "启用基本身份验证");
+        mapping.put(USERNAME, "用户 ID");
+        mapping.put(CREDENTIAL, "秘密");
+        mapping.put(HTTP_CONNECTION_TIMEOUT, "HTTP 连接超时");
+        mapping.put(HTTP_READ_TIMEOUT, "HTTP 读取超时");
+        mapping.put(HTTP_CONNECTION_REQUEST_TIMEOUT, "HTTP 连接请求超时");
+        mapping.put(HOSTNAME_VERIFIER, "主机名验证");
 
         return mapping;
     }
@@ -105,14 +105,14 @@ public class AnalyticsEngineConfigImpl implements IdentityConnectorConfig {
 
         Map<String, String> mapping = new HashMap<>();
 
-        mapping.put(RECEIVER, "Target Host");
-        mapping.put(BASIC_AUTH_ENABLED, "Enable Basic Authentication");
-        mapping.put(USERNAME, "Target Host Secured User ID");
-        mapping.put(CREDENTIAL, "Target Host Secured Secret");
-        mapping.put(HTTP_CONNECTION_TIMEOUT, "HTTP Connection Timeout in milliseconds");
-        mapping.put(HTTP_READ_TIMEOUT, "HTTP Read Timeout in milliseconds");
-        mapping.put(HTTP_CONNECTION_REQUEST_TIMEOUT, "HTTP Connection Request Timeout in milliseconds");
-        mapping.put(HOSTNAME_VERIFIER, "Hostname verification. (STRICT, ALLOW_ALL)");
+        mapping.put(RECEIVER, "目标主机");
+        mapping.put(BASIC_AUTH_ENABLED, "启用基本身份验证");
+        mapping.put(USERNAME, "目标主机安全用户ID");
+        mapping.put(CREDENTIAL, "目标主机安全秘密");
+        mapping.put(HTTP_CONNECTION_TIMEOUT, "HTTP连接超时（以毫秒为单位）");
+        mapping.put(HTTP_READ_TIMEOUT, "HTTP读取超时（以毫秒为单位）");
+        mapping.put(HTTP_CONNECTION_REQUEST_TIMEOUT, "HTTP连接请求超时（以毫秒为单位）");
+        mapping.put(HOSTNAME_VERIFIER, "主机名验证(STRICT, ALLOW_ALL)");
 
         return mapping;
     }

@@ -74,7 +74,8 @@ public class NotificationFunctionServiceComponent {
     protected void setRealmService(RealmService realmService) {
 
         if (LOG.isDebugEnabled()) {
-            LOG.debug("RealmService is set in the conditional authentication notification functions bundle");
+            
+            LOG.debug("RealmService在条件身份验证通知函数包中设置");
         }
         NotificationFunctionServiceHolder.getInstance().setRealmService(realmService);
     }
@@ -82,7 +83,7 @@ public class NotificationFunctionServiceComponent {
     protected void unsetRealmService(RealmService realmService) {
 
         if (LOG.isDebugEnabled()) {
-            LOG.debug("RealmService is unset in the conditional authentication notification functions bundle");
+            LOG.debug("RealmService在条件身份验证通知函数包中未设置");
         }
         NotificationFunctionServiceHolder.getInstance().setRealmService(null);
     }
@@ -97,7 +98,7 @@ public class NotificationFunctionServiceComponent {
     protected void setRegistryService(RegistryService registryService) {
 
         if (LOG.isDebugEnabled()) {
-            LOG.debug("RegistryService is set in the conditional authentication notification functions bundle");
+            LOG.debug("RegistryService在条件身份验证通知函数包中设置");
         }
         NotificationFunctionServiceHolder.getInstance().setRegistryService(registryService);
     }
@@ -105,7 +106,7 @@ public class NotificationFunctionServiceComponent {
     protected void unsetRegistryService(RegistryService registryService) {
 
         if (LOG.isDebugEnabled()) {
-            LOG.debug("RegistryService is unset in the conditional authentication notification functions bundle");
+            LOG.debug("RegistryService在条件身份验证通知函数包中未设置");
         }
         NotificationFunctionServiceHolder.getInstance().setRegistryService(null);
     }
@@ -135,7 +136,7 @@ public class NotificationFunctionServiceComponent {
     protected void setIdentityEventService(IdentityEventService identityEventService) {
 
         if (LOG.isDebugEnabled()) {
-            LOG.debug("IdentityEventService is set in the conditional authentication notification functions bundle");
+            LOG.debug("IdentityEventService在条件身份验证通知函数包中设置");
         }
         NotificationFunctionServiceHolder.getInstance().setIdentityEventService(identityEventService);
     }
@@ -143,7 +144,7 @@ public class NotificationFunctionServiceComponent {
     protected void unsetIdentityEventService(IdentityEventService identityEventService) {
 
         if (LOG.isDebugEnabled()) {
-            LOG.debug("IdentityEventService is unset in the conditional authentication notification functions bundle");
+            LOG.debug("IdentityEventService在条件身份验证通知函数包中未设置");
         }
         NotificationFunctionServiceHolder.getInstance().setIdentityEventService(null);
     }

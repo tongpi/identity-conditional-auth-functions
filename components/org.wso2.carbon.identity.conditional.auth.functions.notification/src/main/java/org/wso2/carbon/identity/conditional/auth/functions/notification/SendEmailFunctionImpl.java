@@ -53,8 +53,7 @@ public class SendEmailFunctionImpl implements SendEmailFunction {
         try {
             NotificationFunctionServiceHolder.getInstance().getIdentityEventService().handleEvent(identityMgtEvent);
         } catch (IdentityEventException e) {
-            LOG.error(String.format("Error when sending notification of template %s to user %s", templateId, user
-                    .getWrapped().toFullQualifiedUsername()), e);
+            LOG.error(String.format("向用户 %s 发送模板 %s 通知时出错 Error when sending notification of template %s to user %s", user.getWrapped().toFullQualifiedUsername(), templateId), e);
         }
         return true;
     }

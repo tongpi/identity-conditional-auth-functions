@@ -55,9 +55,9 @@ public class HasAnyOfTheRolesFunctionImpl implements HasAnyOfTheRolesFunction {
                 }
             }
         } catch (FrameworkException e) {
-            LOG.error("Error in evaluating the function ", e);
+            LOG.error("评估函数时出错", e);
         } catch (UserStoreException e) {
-            LOG.error("Error in getting user from store at the function ", e);
+            LOG.error("在函数中从用户获取用户时出错", e);
         }
 
         return result;
@@ -71,7 +71,7 @@ public class HasAnyOfTheRolesFunctionImpl implements HasAnyOfTheRolesFunction {
                     .getRegistryService(), UserFunctionsServiceHolder.getInstance().getRealmService(), tenantDomain);
         } catch (CarbonException e) {
             throw new FrameworkException(
-                    "Error occurred while retrieving the Realm for " + tenantDomain + " to retrieve user roles", e);
+                    "检索领域以获取" + tenantDomain + "以检索用户角色时发生错误", e);
         }
         return realm;
     }
@@ -89,13 +89,11 @@ public class HasAnyOfTheRolesFunctionImpl implements HasAnyOfTheRolesFunction {
 
             if (userStore == null) {
                 throw new FrameworkException(
-                        String.format("Invalid user store domain (given : %s) or tenant domain (given: %s).",
+                        String.format("无效的用户存储域（给定：%s）或租户域（给定：%s）。",
                                 userDomain, tenantDomain));
             }
         } catch (UserStoreException e) {
-            throw new FrameworkException(
-                    "Error occurred while retrieving the UserStoreManager from Realm for " + tenantDomain
-                            + " to retrieve user roles", e);
+            throw new FrameworkException("从" + tenantDomain + "检索用户角色以检索用户角色时出错", e);
         }
         return userStore;
     }

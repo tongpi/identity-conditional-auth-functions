@@ -48,9 +48,9 @@ public class GetSessionDataFunction implements GetUserSessionDataFunction {
         AuthenticatedUser authenticatedUser = context.getWrapped().getLastAuthenticatedUser();
         if (authenticatedUser == null) {
             if (log.isDebugEnabled()) {
-                log.debug("Unable to find the authenticated user from the Authentication context.");
+                log.debug("无法从身份验证上下文中找到经过身份验证的用户。");
             }
-            throw new FrameworkException("Authentication user not found");
+            throw new FrameworkException("未找到身份验证用户");
         }
         try {
             List<Session> sessionList = SessionValidationUtil.getSessionDetails(authenticatedUser);
@@ -59,7 +59,7 @@ public class GetSessionDataFunction implements GetUserSessionDataFunction {
             }
 
         } catch (IOException | SessionValidationException e) {
-            log.error("Failed to retrieve active session details", e);
+            log.error("无法检索活动会话详细信息", e);
         }
         return sessionMap;
     }

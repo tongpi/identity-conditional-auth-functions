@@ -76,7 +76,7 @@ public class SessionValidationUtil {
                 responseJsonArray = new JSONArray(responseResult.toString());
             }
         } else {
-            throw new SessionValidationException("Failed to retrieve data from endpoint. Error code :" +
+            throw new SessionValidationException("无法从端点检索数据。 错误代码 :" +
                     httpResponse.getStatusLine().getStatusCode());
         }
         return getSessionListFromJSON(responseJsonArray);

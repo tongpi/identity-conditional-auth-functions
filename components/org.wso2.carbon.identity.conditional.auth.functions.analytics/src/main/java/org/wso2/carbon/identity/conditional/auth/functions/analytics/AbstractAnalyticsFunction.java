@@ -49,7 +49,7 @@ public abstract class AbstractAnalyticsFunction {
 
         if (Boolean.parseBoolean(isBasicAuthEnabled(tenantDomain))) {
             if (LOG.isDebugEnabled()) {
-                LOG.debug("Basic Authentication enabled for outbound analytics calls in the tenant:" + tenantDomain);
+                LOG.debug("在租户：" + tenantDomain + "中的出站分析调用启用了基本身份验证");
             }
             String username = getUsername(tenantDomain);
             String password = getPassword(tenantDomain);
@@ -59,8 +59,7 @@ public abstract class AbstractAnalyticsFunction {
                     password), request));
         } else {
             if (LOG.isDebugEnabled()) {
-                LOG.debug("Basic Authentication is not enabled for outbound analytics calls in for the tenant:" +
-                        tenantDomain);
+                LOG.debug("租户:" + tenantDomain + "的出站分析调用未启用基本身份验证");
             }
         }
     }

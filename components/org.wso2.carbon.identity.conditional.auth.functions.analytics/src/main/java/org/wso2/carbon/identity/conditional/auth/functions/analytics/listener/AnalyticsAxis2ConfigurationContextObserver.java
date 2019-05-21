@@ -41,7 +41,7 @@ public class AnalyticsAxis2ConfigurationContextObserver extends
         try {
             ClientManager.getInstance().closeClient(tenantId);
         } catch (IOException e) {
-            log.error("Error while closing http client for tenant: " + tenantId, e);
+            log.error("关闭租户:" + tenantId + "的http客户端时出错", e);
         }
     }
 }
